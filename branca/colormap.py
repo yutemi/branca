@@ -89,6 +89,7 @@ class ColorMap(MacroElement):
         self.max_labels = max_labels
         self.tick_labels = None
 
+        self.position = "topright"
         self.width = 450
         self.height = 40
 

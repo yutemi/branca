@@ -15,7 +15,7 @@
               .domain([{{ this.color_domain[0] }}, {{ this.color_domain[-1] }}])
               .range([0, {{ this.width }} - 50]);
 
-    {{this.get_name()}}.legend = L.control({position: 'topright'});
+    {{this.get_name()}}.legend = L.control({position: "{{ this.position }}"});
     {{this.get_name()}}.legend.onAdd = function (map) {var div = L.DomUtil.create('div', 'legend'); return div};
     {{this.get_name()}}.legend.addTo({{this._parent.get_name()}});
 
@@ -32,7 +32,8 @@
 
     {{this.get_name()}}.g = {{this.get_name()}}.svg.append("g")
         .attr("class", "key")
-        .attr("transform", "translate(25,16)");
+        .attr("transform", "translate(25,16)")
+        .attr("font-size", "{{ this.font_size }}");
 
     {{this.get_name()}}.g.selectAll("rect")
         .data({{this.get_name()}}.color.range().map(function(d, i) {
@@ -47,7 +48,7 @@
         .attr("x", function(d) { return d.x0; })
         .attr("width", function(d) { return d.x1 - d.x0; })
         .style("fill", function(d) { return d.z; });
-
+    
     {{this.get_name()}}.g.call({{this.get_name()}}.xAxis).append("text")
         .attr("class", "caption")
         .attr("y", 21)
